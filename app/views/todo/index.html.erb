@@ -1,2 +1,23 @@
-<h1>Todo#index</h1>
-<p>Find me in app/views/todo/index.html.erb</p>
+<h1>Todo</h1>
+
+<div class="row">
+  <div class="span12">
+    <div ng-controller="TodoCtrl">
+      <form ng-submit="addEntry()">
+        <input type="text" ng-model="newEntry.data">
+        <input type="submit" value="add">
+      </form>
+
+      Search: <input type="text" ng-model="search.data">
+      <ul>
+        <li ng-repeat="entry in entries | filter: search.data">
+          <span ng-class='{highlight: entry.completed}' ng-click='entry.completed = !entry.completed'>{{entry.data}}</span>
+          <span ng-show='entry.completed'>COMPLETED</span>
+          <form ng-submit="removeEntry($index)">
+            <input type="submit" value="Remove">
+          </form>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
